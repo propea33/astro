@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Horoscope Hebdomadaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Votre Horoscope Hebdomadaire</h1>
+        <input type="date" id="birthdate">
+        <button onclick="getHoroscope()">Entrer</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function getHoroscope() {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const sign = getZodiacSign(birthdate);
+            const horoscope = getWeeklyHoroscope(sign);
+            
+            document.getElementById('result').innerHTML = `
+                <h2>Votre signe astrologique : ${sign}</h2>
+                <p>${horoscope}</p>
+            `;
+        }
+
+        function getZodiacSign(date) {
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Verseau";
+            if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Poissons";
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return "Bélier";
+            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return "Taureau";
+            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return "Gémeaux";
+            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return "Cancer";
+            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return "Lion";
+            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return "Vierge";
+            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return "Balance";
+            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return "Scorpion";
+            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagittaire";
+            return "Capricorne";
+        }
+
+        function getWeeklyHoroscope(sign) {
+            const horoscopes = {
+                "Verseau": "Cette semaine, votre créativité sera à son apogée. Profitez-en pour lancer de nouveaux projets.",
+                "Poissons": "Une rencontre inattendue pourrait changer votre perspective. Restez ouvert aux nouvelles opportunités.",
+                "Bélier": "Votre énergie sera débordante. Canalisez-la dans des activités productives pour atteindre vos objectifs.",
+                "Taureau": "La stabilité sera votre mot d'ordre. C'est le moment idéal pour consolider vos acquis.",
+                "Gémeaux": "Votre curiosité vous mènera vers de nouvelles découvertes. N'hésitez pas à explorer de nouveaux horizons.",
+                "Cancer": "L'harmonie règnera dans votre foyer. Profitez de cette période pour renforcer vos liens familiaux.",
+                "Lion": "Votre charisme sera irrésistible. Utilisez-le à bon escient pour influencer positivement votre entourage.",
+                "Vierge": "Votre sens du détail sera un atout majeur. Concentrez-vous sur la perfection de vos projets en cours.",
+                "Balance": "L'équilibre sera au centre de vos préoccupations. Cherchez l'harmonie dans tous les aspects de votre vie.",
+                "Scorpion": "Votre intuition sera particulièrement aiguisée. Faites-lui confiance pour prendre des décisions importantes.",
+                "Sagittaire": "L'aventure vous appelle. C'est le moment idéal pour planifier un voyage ou commencer une nouvelle formation.",
+                "Capricorne": "Votre détermination sera votre plus grande force. Fixez-vous des objectifs ambitieux et travaillez dur pour les atteindre."
+            };
+
+            return horoscopes[sign] || "Horoscope non disponible pour le moment.";
+        }
+    </script>
+</body>
+</html>
