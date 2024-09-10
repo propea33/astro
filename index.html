@@ -3,14 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Horoscope Personnalisé</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <title>Astrologie SaaS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
 <body>
     <div class="container">
-        <h1>Découvrez votre signe astrologique et votre horoscope</h1>
+        <h1>Découvrez votre signe astrologique</h1>
         <input type="date" id="birthdate">
-        <button onclick="getZodiacSign()">Consulter mon horoscope</button>
-        <div id="result"></div>
+        <button onclick="getAstrology()">Enter</button>
+        <div class="result" id="result"></div>
     </div>
-    <script src="script.js"></script> </body>
+
+    <script>
+        function getAstrology() {
+            const birthdate = new Date(document.getElementById("birthdate").value);
+            const month = birthdate.getMonth() + 1;
+            const day = birthdate.getDate();
+
+            const signs = [
+                { sign: "Capricorne", dates: [[12, 22], [1, 19]], desc: "Une semaine de défis vous attend, mais votre persévérance vous guidera." },
+                { sign: "Verseau", dates: [[1, 20], [2, 18]], desc: "Cette semaine, l'innovation est au rendez-vous. Profitez-en pour explorer de nouvelles idées." },
+                { sign: "Poissons", dates: [[2, 19], [3, 20]], desc: "Les émotions seront fortes cette semaine. Prenez soin de vous et de ceux que vous aimez." },
+                { sign: "Bélier", dates: [[3, 21], [4, 19]], desc: "L'énergie est à son maximum. Utilisez-la à bon escient pour atteindre vos objectifs." },
+                { sign: "Taureau", dates: [[4, 20], [5, 20]], desc: "C'est le moment de vous concentrer sur la stabilité et la sécurité dans votre vie." },
+                { sign: "Gémeaux", dates: [[5, 21], [6, 20]], desc: "Une semaine pleine de communication et de nouvelles connexions sociales vous attend." },
+                { sign: "Cancer", dates: [[6, 21], [7, 22]], desc: "Votre sensibilité sera amplifiée cette semaine. Prenez le temps de vous ressourcer." },
+                { sign: "Lion", dates: [[7, 23], [8, 22]], desc: "Votre charisme brille cette semaine. C'est le moment de vous mettre en avant." },
+                { sign: "Vierge", dates: [[8, 23], [9, 22]], desc: "L'organisation et la précision seront vos alliées cette semaine." },
+                { sign: "Balance", dates: [[9, 23], [10, 22]], desc: "Cherchez l'équilibre dans vos relations cette semaine. Harmonie en vue." },
+                { sign: "Scorpion", dates: [[10, 23], [11, 21]], desc: "Votre intensité est palpable. Utilisez-la pour transformer votre vie cette semaine." },
+                { sign: "Sagittaire", dates: [[11, 22], [12, 21]], desc: "L'aventure vous appelle cette semaine. Ne laissez pas la routine vous freiner." }
+            ];
+
+            let signDescription = "Date non valide. Veuillez choisir une date.";
+            for (let i = 0; i < signs.length; i++) {
+                const sign = signs[i];
+                const start = new Date(birthdate.getFullYear(), sign.dates[0][0] - 1, sign.dates[0][1]);
+                const end = new Date(birthdate.getFullYear(), sign.dates[1][0] - 1, sign.dates[1][1]);
+                if (birthdate >= start && birthdate <= end) {
+                    signDescription = `Votre signe est ${sign.sign}. ${sign.desc}`;
+                    break;
+                }
+            }
+
+            document.getElementById("result").innerHTML = signDescription;
+        }
+    </script>
+</body>
 </html>
