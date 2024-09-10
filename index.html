@@ -31,6 +31,12 @@
             position: absolute;
             background: white;
             border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
         .container {
             background-color: rgba(255, 255, 255, 0.1);
@@ -40,6 +46,8 @@
             text-align: center;
             color: white;
             backdrop-filter: blur(5px);
+            max-width: 80%;
+            width: 400px;
         }
         input, button {
             margin: 10px 0;
@@ -47,6 +55,8 @@
             font-size: 16px;
             border: none;
             border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
         }
         input {
             background-color: rgba(255, 255, 255, 0.2);
@@ -64,6 +74,14 @@
         #result {
             margin-top: 20px;
         }
+        .zodiac-image {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +91,7 @@
         <input type="text" id="birthdate" placeholder="Sélectionnez votre date de naissance">
         <button onclick="getHoroscope()">Entrer</button>
         <div id="result"></div>
+        <div id="zodiac-image" class="zodiac-image"></div>
     </div>
 
     <script>
@@ -107,31 +126,33 @@
                 <h2>Votre signe astrologique : ${sign}</h2>
                 <p>${horoscope}</p>
             `;
+            
+            // Mise à jour de l'image du signe astrologique
+            const zodiacImage = document.getElementById('zodiac-image');
+            zodiacImage.style.backgroundImage = `url('https://via.placeholder.com/100x100.png?text=${sign}')`;
         }
 
         function getZodiacSign(date) {
             const month = date.getMonth() + 1;
             const day = date.getDate();
 
-            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Verseau";
-            if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Poissons";
-            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return "Bélier";
-            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return "Taureau";
-            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return "Gémeaux";
-            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return "Cancer";
-            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return "Lion";
-            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return "Vierge";
-            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return "Balance";
-            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return "Scorpion";
-            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagittaire";
-            return "Capricorne";
+            if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "Bélier";
+            if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return "Taureau";
+            if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return "Gémeaux";
+            if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return "Cancer";
+            if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return "Lion";
+            if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return "Vierge";
+            if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return "Balance";
+            if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return "Scorpion";
+            if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return "Sagittaire";
+            if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return "Capricorne";
+            if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return "Verseau";
+            return "Poissons";
         }
 
         function getWeeklyHoroscope(sign) {
             const horoscopes = {
-                "Verseau": "Cette semaine, votre créativité sera à son apogée. Profitez-en pour lancer de nouveaux projets.",
-                "Poissons": "Une rencontre inattendue pourrait changer votre perspective. Restez ouvert aux nouvelles opportunités.",
-                "Bélier": "Votre énergie sera débordante. Canalisez-la dans des activités productives pour atteindre vos objectifs.",
+                "Bélier": "Cette semaine, votre énergie sera débordante. Canalisez-la dans des activités productives pour atteindre vos objectifs.",
                 "Taureau": "La stabilité sera votre mot d'ordre. C'est le moment idéal pour consolider vos acquis.",
                 "Gémeaux": "Votre curiosité vous mènera vers de nouvelles découvertes. N'hésitez pas à explorer de nouveaux horizons.",
                 "Cancer": "L'harmonie règnera dans votre foyer. Profitez de cette période pour renforcer vos liens familiaux.",
@@ -140,7 +161,9 @@
                 "Balance": "L'équilibre sera au centre de vos préoccupations. Cherchez l'harmonie dans tous les aspects de votre vie.",
                 "Scorpion": "Votre intuition sera particulièrement aiguisée. Faites-lui confiance pour prendre des décisions importantes.",
                 "Sagittaire": "L'aventure vous appelle. C'est le moment idéal pour planifier un voyage ou commencer une nouvelle formation.",
-                "Capricorne": "Votre détermination sera votre plus grande force. Fixez-vous des objectifs ambitieux et travaillez dur pour les atteindre."
+                "Capricorne": "Votre détermination sera votre plus grande force. Fixez-vous des objectifs ambitieux et travaillez dur pour les atteindre.",
+                "Verseau": "Cette semaine, votre créativité sera à son apogée. Profitez-en pour lancer de nouveaux projets.",
+                "Poissons": "Une rencontre inattendue pourrait changer votre perspective. Restez ouvert aux nouvelles opportunités."
             };
 
             return horoscopes[sign] || "Horoscope non disponible pour le moment.";
