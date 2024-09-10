@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combien de jours avant Noël ? Votre compte à rebours festif</title>
-    <meta name="description" content="Découvrez en temps réel combien de jours il reste avant Noël. Le compte à rebours officiel pour les fêtes de fin d'année. Simple, rapide et précis.">
-    <meta name="keywords" content="noël, compte à rebours, jours avant noël, fêtes, décembre, sapin, cadeaux, santa" />
-
-    <meta property="og:title" content="Combien de jours avant Noël ?" />
-    <meta property="og:description" content="Découvrez en temps réel combien de jours il reste avant Noël. Le compte à rebours officiel pour les fêtes de fin d'année." />
-    <meta property="og:image" content="https://votresite.com/image-de-votre-site.jpg" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Combien de jours avant Noël ?" />
-    <meta name="twitter:description" content="Découvrez en temps réel combien de jours il reste avant Noël. Le compte à rebours officiel pour les fêtes de fin d'année." />
-    <meta name="twitter:image" content="https://votresite.com/image-de-votre-SEO.jpg" />
+    <title>Combien de jours avant Noël ?</title>
 </head>
 <body>
     <h1>Combien de jours avant Noël ?</h1>
@@ -24,15 +13,15 @@
         function countdown() {
             const today = new Date();
             const christmas = new Date(today.getFullYear(), 11, 25); // Mois est indexé à partir de 0 (janvier = 0)
-            let difference = christmas - today;
+            let differenceInMilliseconds = christmas - today;
 
-            // Si Noël est déjà passé cette année, on calcule pour l'année prochaine
-            if (difference < 0) {
+            // Si Noël est déjà passé cette année, on calcule pour l'année suivante
+            if (differenceInMilliseconds < 0) {
                 christmas.setFullYear(christmas.getFullYear() + 1);
-                difference = christmas - today;
+                differenceInMilliseconds = christmas - today;
             }
 
-            const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            const daysLeft = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
             document.getElementById("countdown").textContent = daysLeft + " jour" + (daysLeft > 1 ? "s" : "");
         }
 
