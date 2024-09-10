@@ -4,26 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Horoscope Hebdomadaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <style>
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        body {
+            background: black;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
         }
         .container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
             text-align: center;
+            color: white;
+            backdrop-filter: blur(5px);
         }
         input, button {
             margin: 10px 0;
-            padding: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
         }
         #result {
             margin-top: 20px;
@@ -31,14 +67,37 @@
     </style>
 </head>
 <body>
+    <div class="stars"></div>
     <div class="container">
         <h1>Votre Horoscope Hebdomadaire</h1>
-        <input type="date" id="birthdate">
+        <input type="text" id="birthdate" placeholder="Sélectionnez votre date de naissance">
         <button onclick="getHoroscope()">Entrer</button>
         <div id="result"></div>
     </div>
 
     <script>
+        // Code pour les étoiles filantes
+        const starsContainer = document.querySelector('.stars');
+        const starCount = 100;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Initialisation de flatpickr
+        flatpickr("#birthdate", {
+            dateFormat: "d-m-Y",
+            maxDate: "today",
+        });
+
         function getHoroscope() {
             const birthdate = new Date(document.getElementById('birthdate').value);
             const sign = getZodiacSign(birthdate);
