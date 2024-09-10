@@ -58,6 +58,13 @@
             padding: 20px;
             border-radius: 5px;
         }
+
+        .astro-image {
+            margin-top: 20px;
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +73,7 @@
         <input type="date" id="birthdate">
         <button onclick="getAstrology()">Enter</button>
         <div class="result" id="result"></div>
+        <img id="astroImage" class="astro-image" style="display:none;" src="" alt="Astro Image">
     </div>
 
     <script>
@@ -75,32 +83,41 @@
             const day = birthdate.getDate();
 
             const signs = [
-                { sign: "Capricorne", dates: [[12, 22], [1, 19]], desc: "Une semaine de défis vous attend, mais votre persévérance vous guidera." },
-                { sign: "Verseau", dates: [[1, 20], [2, 18]], desc: "Cette semaine, l'innovation est au rendez-vous. Profitez-en pour explorer de nouvelles idées." },
-                { sign: "Poissons", dates: [[2, 19], [3, 20]], desc: "Les émotions seront fortes cette semaine. Prenez soin de vous et de ceux que vous aimez." },
-                { sign: "Bélier", dates: [[3, 21], [4, 19]], desc: "L'énergie est à son maximum. Utilisez-la à bon escient pour atteindre vos objectifs." },
-                { sign: "Taureau", dates: [[4, 20], [5, 20]], desc: "C'est le moment de vous concentrer sur la stabilité et la sécurité dans votre vie." },
-                { sign: "Gémeaux", dates: [[5, 21], [6, 20]], desc: "Une semaine pleine de communication et de nouvelles connexions sociales vous attend." },
-                { sign: "Cancer", dates: [[6, 21], [7, 22]], desc: "Votre sensibilité sera amplifiée cette semaine. Prenez le temps de vous ressourcer." },
-                { sign: "Lion", dates: [[7, 23], [8, 22]], desc: "Votre charisme brille cette semaine. C'est le moment de vous mettre en avant." },
-                { sign: "Vierge", dates: [[8, 23], [9, 22]], desc: "L'organisation et la précision seront vos alliées cette semaine." },
-                { sign: "Balance", dates: [[9, 23], [10, 22]], desc: "Cherchez l'équilibre dans vos relations cette semaine. Harmonie en vue." },
-                { sign: "Scorpion", dates: [[10, 23], [11, 21]], desc: "Votre intensité est palpable. Utilisez-la pour transformer votre vie cette semaine." },
-                { sign: "Sagittaire", dates: [[11, 22], [12, 21]], desc: "L'aventure vous appelle cette semaine. Ne laissez pas la routine vous freiner." }
+                { sign: "Capricorne", dates: [[12, 22], [1, 19]], desc: "Une semaine de défis vous attend, mais votre persévérance vous guidera.", img: "https://path-to-your-ai-image/capricorne.jpg" },
+                { sign: "Verseau", dates: [[1, 20], [2, 18]], desc: "Cette semaine, l'innovation est au rendez-vous. Profitez-en pour explorer de nouvelles idées.", img: "https://path-to-your-ai-image/verseau.jpg" },
+                { sign: "Poissons", dates: [[2, 19], [3, 20]], desc: "Les émotions seront fortes cette semaine. Prenez soin de vous et de ceux que vous aimez.", img: "https://path-to-your-ai-image/poissons.jpg" },
+                { sign: "Bélier", dates: [[3, 21], [4, 19]], desc: "L'énergie est à son maximum. Utilisez-la à bon escient pour atteindre vos objectifs.", img: "https://path-to-your-ai-image/belier.jpg" },
+                { sign: "Taureau", dates: [[4, 20], [5, 20]], desc: "C'est le moment de vous concentrer sur la stabilité et la sécurité dans votre vie.", img: "https://path-to-your-ai-image/taureau.jpg" },
+                { sign: "Gémeaux", dates: [[5, 21], [6, 20]], desc: "Une semaine pleine de communication et de nouvelles connexions sociales vous attend.", img: "https://path-to-your-ai-image/gemeaux.jpg" },
+                { sign: "Cancer", dates: [[6, 21], [7, 22]], desc: "Votre sensibilité sera amplifiée cette semaine. Prenez le temps de vous ressourcer.", img: "https://path-to-your-ai-image/cancer.jpg" },
+                { sign: "Lion", dates: [[7, 23], [8, 22]], desc: "Votre charisme brille cette semaine. C'est le moment de vous mettre en avant.", img: "https://path-to-your-ai-image/lion.jpg" },
+                { sign: "Vierge", dates: [[8, 23], [9, 22]], desc: "L'organisation et la précision seront vos alliées cette semaine.", img: "https://path-to-your-ai-image/vierge.jpg" },
+                { sign: "Balance", dates: [[9, 23], [10, 22]], desc: "Cherchez l'équilibre dans vos relations cette semaine. Harmonie en vue.", img: "https://path-to-your-ai-image/balance.jpg" },
+                { sign: "Scorpion", dates: [[10, 23], [11, 21]], desc: "Votre intensité est palpable. Utilisez-la pour transformer votre vie cette semaine.", img: "https://path-to-your-ai-image/scorpion.jpg" },
+                { sign: "Sagittaire", dates: [[11, 22], [12, 21]], desc: "L'aventure vous appelle cette semaine. Ne laissez pas la routine vous freiner.", img: "https://path-to-your-ai-image/sagittaire.jpg" }
             ];
 
             let signDescription = "Date non valide. Veuillez choisir une date.";
+            let astroImage = "";
             for (let i = 0; i < signs.length; i++) {
                 const sign = signs[i];
                 const start = new Date(birthdate.getFullYear(), sign.dates[0][0] - 1, sign.dates[0][1]);
                 const end = new Date(birthdate.getFullYear(), sign.dates[1][0] - 1, sign.dates[1][1]);
                 if (birthdate >= start && birthdate <= end) {
                     signDescription = `Votre signe est ${sign.sign}. ${sign.desc}`;
+                    astroImage = sign.img;
                     break;
                 }
             }
 
             document.getElementById("result").innerHTML = signDescription;
+
+            if (astroImage !== "") {
+                document.getElementById("astroImage").src = astroImage;
+                document.getElementById("astroImage").style.display = "block";
+            } else {
+                document.getElementById("astroImage").style.display = "none";
+            }
         }
     </script>
 </body>
