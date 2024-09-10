@@ -3,135 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez combien de jours il reste avant Noël et explorez des articles en lien avec Noël sur Amazon.">
-    <meta name="keywords" content="combien de jours avant Noël, compte à rebours Noël, jours avant Noël, Noël 2024, cadeaux Noël, articles Noël Amazon">
-    <meta name="author" content="Votre Nom">
-    <title>Il reste combien de jours avant Noël ?</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            color: white;
-            text-align: center;
-            background-color: #B22222; /* Fond rouge */
-            background-image: url('https://www.transparenttextures.com/patterns/dark-dots.png'); /* Texture neige légère */
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    <title>Combien de jours avant Noël ?</title>
+    <meta name="description" content="Découvrez en temps réel combien de jours, de semaines et de mois il reste avant Noël. Votre compte à rebours personnalisé pour les fêtes de fin d'année.">
+    <meta name="keywords" content="noël, compte à rebours, jours avant noël, fêtes de fin d'année">
 
-        h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px #000;
-        }
-
-        #countdown {
-            font-size: 40px;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px #000;
-        }
-
-        table {
-            width: 80%;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background-color: white;
-            color: black;
-            text-align: left;
-        }
-
-        table th, table td {
-            padding: 15px;
-            border: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #f4f4f4;
-        }
-
-        table a {
-            color: #B22222;
-            text-decoration: none;
-        }
-
-        table a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Il reste combien de jours avant Noël ?</h1>
-    <div id="countdown"></div>
+    <div class="container">
+        <h1>Combien de jours avant Noël ?</h1>
+        <div id="countdown">
+            <p id="days"></p>
+            <p id="weeks"></p>
+            <p id="months"></p>
+        </div>
+    </div>
 
-    <!-- Tableau des articles Amazon en lien avec Noël -->
-    <footer>
-        <h2>Articles en lien avec Noël sur Amazon</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Description</th>
-                    <th>Lien</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sapin de Noël artificiel</td>
-                    <td>Un magnifique sapin de Noël artificiel pour décorer votre maison cette saison.</td>
-                    <td><a href="https://www.amazon.ca/dp/B08T63XLHF" target="_blank">Voir sur Amazon</a></td>
-                </tr>
-                <tr>
-                    <td>Guirlandes lumineuses</td>
-                    <td>Ajoutez de la magie à votre intérieur avec ces guirlandes lumineuses.</td>
-                    <td><a href="https://www.amazon.ca/dp/B07X8Q55WZ" target="_blank">Voir sur Amazon</a></td>
-                </tr>
-                <tr>
-                    <td>Boules de Noël</td>
-                    <td>Des boules colorées pour parer votre sapin de Noël.</td>
-                    <td><a href="https://www.amazon.ca/dp/B0858ZWYFN" target="_blank">Voir sur Amazon</a></td>
-                </tr>
-                <tr>
-                    <td>Chaussettes de Noël</td>
-                    <td>Pendant vos chaussettes de Noël pour les cadeaux du Père Noël.</td>
-                    <td><a href="https://www.amazon.ca/dp/B09LVG7KJK" target="_blank">Voir sur Amazon</a></td>
-                </tr>
-                <tr>
-                    <td>Bonnet de Noël</td>
-                    <td>Portez ce bonnet rouge et blanc pour incarner l’esprit festif.</td>
-                    <td><a href="https://www.amazon.ca/dp/B00BFWZMN4" target="_blank">Voir sur Amazon</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </footer>
+    <script src="script.js"></script>
 
-    <script>
-        // Calcul des jours restants avant Noël
-        function updateCountdown() {
-            const today = new Date();
-            const christmas = new Date(today.getFullYear(), 11, 25); // Noël est le 25 décembre
+    <div id="snow"></div>
 
-            if (today > christmas) {
-                christmas.setFullYear(today.getFullYear() + 1); // Si Noël est passé cette année, on prend Noël de l'année suivante
-            }
-
-            const oneDay = 24 * 60 * 60 * 1000; // Millisecondes dans une journée
-            const daysLeft = Math.ceil((christmas - today) / oneDay);
-
-            document.getElementById("countdown").innerHTML = `Il reste ${daysLeft} jours avant Noël !`;
-        }
-
-        // Mise à jour du compte à rebours
-        updateCountdown();
-        setInterval(updateCountdown, 86400000); // Mise à jour tous les jours
-    </script>
+    <script src="snow.js"></script>
 </body>
 </html>
