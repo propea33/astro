@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez combien de jours il reste avant Noël avec ce compte à rebours festif et une ambiance magique de Noël.">
-    <meta name="keywords" content="combien de jours avant Noël, compte à rebours Noël, jours avant Noël, Noël 2024, Père Noël, bonhomme de neige, montagnes enneigées, sapin de Noël">
+    <meta name="description" content="Découvrez combien de jours il reste avant Noël et explorez des articles en lien avec Noël sur Amazon.">
+    <meta name="keywords" content="combien de jours avant Noël, compte à rebours Noël, jours avant Noël, Noël 2024, cadeaux Noël, articles Noël Amazon">
     <meta name="author" content="Votre Nom">
     <title>Il reste combien de jours avant Noël ?</title>
     <style>
@@ -14,16 +14,14 @@
             font-family: 'Arial', sans-serif;
             color: white;
             text-align: center;
-            background-color: #001f3f;
+            background-color: #B22222; /* Fond rouge */
+            background-image: url('https://www.transparenttextures.com/patterns/dark-dots.png'); /* Texture neige légère */
             height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-image: url('https://images.unsplash.com/photo-1516817411119-cd4a4b31059a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHdpbnRlcnklMjBtb3VudGFpbnxlbnwwfHx8fDE2Mjg2MjYyMzI&ixlib=rb-1.2.1&q=80&w=1080');
-            background-size: cover;
-            background-position: center;
         }
 
         h1 {
@@ -38,57 +36,35 @@
             text-shadow: 2px 2px 5px #000;
         }
 
-        /* Flocons de neige */
-        .snowflake {
-            position: absolute;
-            top: -10px;
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
             background-color: white;
-            border-radius: 50%;
-            width: 8px;
-            height: 8px;
-            animation: fall 10s linear infinite;
-            opacity: 0.8;
+            color: black;
+            text-align: left;
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(0px);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
+        table th, table td {
+            padding: 15px;
+            border: 1px solid #ddd;
         }
 
-        @keyframes sway {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(100px);
-            }
+        table th {
+            background-color: #f4f4f4;
         }
 
-        /* Pères Noël et bonhommes de neige animés */
-        .santa {
-            position: absolute;
-            width: 100px;
-            animation: moveSanta 15s linear infinite;
+        table a {
+            color: #B22222;
+            text-decoration: none;
         }
 
-        .snowman {
-            position: absolute;
-            width: 80px;
-            animation: moveSnowman 20s linear infinite;
+        table a:hover {
+            text-decoration: underline;
         }
 
-        @keyframes moveSanta {
-            0% { top: 10%; left: -10%; }
-            100% { top: 15%; left: 110%; }
-        }
-
-        @keyframes moveSnowman {
-            0% { top: 70%; left: 110%; }
-            100% { top: 75%; left: -10%; }
+        footer {
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -96,9 +72,46 @@
     <h1>Il reste combien de jours avant Noël ?</h1>
     <div id="countdown"></div>
 
-    <!-- Images animées de Noël -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Santa_Claus_flying_on_sleigh.gif" class="santa" alt="Père Noël">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Frosty_the_snowman.svg" class="snowman" alt="Bonhomme de neige">
+    <!-- Tableau des articles Amazon en lien avec Noël -->
+    <footer>
+        <h2>Articles en lien avec Noël sur Amazon</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Description</th>
+                    <th>Lien</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sapin de Noël artificiel</td>
+                    <td>Un magnifique sapin de Noël artificiel pour décorer votre maison cette saison.</td>
+                    <td><a href="https://www.amazon.ca/dp/B08T63XLHF" target="_blank">Voir sur Amazon</a></td>
+                </tr>
+                <tr>
+                    <td>Guirlandes lumineuses</td>
+                    <td>Ajoutez de la magie à votre intérieur avec ces guirlandes lumineuses.</td>
+                    <td><a href="https://www.amazon.ca/dp/B07X8Q55WZ" target="_blank">Voir sur Amazon</a></td>
+                </tr>
+                <tr>
+                    <td>Boules de Noël</td>
+                    <td>Des boules colorées pour parer votre sapin de Noël.</td>
+                    <td><a href="https://www.amazon.ca/dp/B0858ZWYFN" target="_blank">Voir sur Amazon</a></td>
+                </tr>
+                <tr>
+                    <td>Chaussettes de Noël</td>
+                    <td>Pendant vos chaussettes de Noël pour les cadeaux du Père Noël.</td>
+                    <td><a href="https://www.amazon.ca/dp/B09LVG7KJK" target="_blank">Voir sur Amazon</a></td>
+                </tr>
+                <tr>
+                    <td>Bonnet de Noël</td>
+                    <td>Portez ce bonnet rouge et blanc pour incarner l’esprit festif.</td>
+                    <td><a href="https://www.amazon.ca/dp/B00BFWZMN4" target="_blank">Voir sur Amazon</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </footer>
 
     <script>
         // Calcul des jours restants avant Noël
@@ -119,26 +132,6 @@
         // Mise à jour du compte à rebours
         updateCountdown();
         setInterval(updateCountdown, 86400000); // Mise à jour tous les jours
-
-        // Génération des flocons de neige
-        function createSnowflake() {
-            const snowflake = document.createElement("div");
-            snowflake.classList.add("snowflake");
-            snowflake.style.left = Math.random() * window.innerWidth + "px";
-            snowflake.style.animationDuration = Math.random() * 3 + 5 + "s"; // Durée de l'animation
-            snowflake.style.animationTimingFunction = "ease-in-out";
-            snowflake.style.animationName = "fall, sway";
-            snowflake.style.animationDelay = Math.random() * 10 + "s";
-            document.body.appendChild(snowflake);
-
-            // Supprimer le flocon après l'animation
-            setTimeout(() => {
-                snowflake.remove();
-            }, 10000);
-        }
-
-        // Créer plusieurs flocons de neige à intervalles réguliers
-        setInterval(createSnowflake, 200);
     </script>
 </body>
 </html>
