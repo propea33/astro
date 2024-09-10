@@ -22,11 +22,18 @@
 
     <script>
         function countdown() {
-            const christmas = new Date("December 25, 2023 00:00:00").getTime();
-            const now = new Date().getTime();
-            const distance = christmas - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown").textContent = days + " jours";
+            const today = new Date();
+            const christmas = new Date(today.getFullYear(), 11, 25); // Mois est indexé à partir de 0 (janvier = 0)
+            let difference = christmas - today;
+
+            // Si Noël est déjà passé cette année, on calcule pour l'année prochaine
+            if (difference < 0) {
+                christmas.setFullYear(christmas.getFullYear() + 1);
+                difference = christmas - today;
+            }
+
+            const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            document.getElementById("countdown").textContent = daysLeft + " jour" + (daysLeft > 1 ? "s" : "");
         }
 
         countdown();
