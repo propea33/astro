@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combien de temps avant Noël ? Décompte des jours en temps réel</title>
     <meta name="description" content="Découvrez en temps réel combien de jours, mois, semaines, heures, minutes et secondes il reste avant Noël. Décompte précis et mise à jour en direct !">
@@ -12,35 +12,60 @@
     <meta property="og:url" content="https://www.avantnoel.com" />
     <meta property="og:type" content="website" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
         body, html {
             height: 100%;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('https://via.placeholder.com/1920x1080.png?text=Bonhomme+de+neige') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            color: #37474F;
+            overflow: hidden;
         }
         .container {
             text-align: center;
-            background-color: #860000;
-            padding: 2rem;
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #1565C0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         #countdown {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #00796B;
+            font-weight: bold;
+        }
+        #detailed-countdown {
+            font-size: 1.4rem;
+            color: #455A64;
+            margin-bottom: 2rem;
+        }
+        .seo-text {
+            font-size: 1rem;
+            margin-top: 2rem;
+            color: #546E7A;
+            max-width: 600px;
+            text-align: justify;
+            line-height: 1.6;
         }
         .snowflake {
             color: #fff;
-            font-size: 1em;
+            font-size: 1.5em;
             font-family: Arial, sans-serif;
             text-shadow: 0 0 5px #000;
             position: fixed;
@@ -53,6 +78,7 @@
             animation-timing-function: linear, ease-in-out;
             animation-iteration-count: infinite, infinite;
             animation-play-state: running, running;
+            opacity: 0.7;
         }
         @keyframes snowflakes-fall {
             0% { top: -10%; }
@@ -63,9 +89,23 @@
             50% { transform: translateX(80px); }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Combien de temps avant Noël ?",
+      "url": "https://www.votredomaine.fr/combien-de-temps-avant-noel",
+      "description": "Décompte en temps réel des jours, heures, minutes et secondes avant Noël.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.votredomaine.fr/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 </head>
 <body>
-   <div class="container">
+    <div class="container">
         <h1>Combien de temps avant Noël ?</h1>
         <div id="countdown"></div>
         <div id="detailed-countdown"></div>
@@ -80,7 +120,7 @@
         function updateCountdown() {
             const now = new Date();
             const currentYear = now.getFullYear();
-            const christmasDate = new Date(currentYear, 11, 25); // Mois 11 = décembre (0-indexed)
+            const christmasDate = new Date(currentYear, 11, 25);
             
             if (now > christmasDate) {
                 christmasDate.setFullYear(currentYear + 1);
@@ -97,12 +137,13 @@
             
             document.getElementById('countdown').innerHTML = `Il reste ${days} jours avant Noël`;
             document.getElementById('detailed-countdown').innerHTML = `${months} mois, ${weeks} semaines, ${hours} heures, ${minutes} minutes, ${seconds} secondes`;
+
+            document.title = `Combien de temps avant Noël ? ${days} jours restants !`;
         }
         
         setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
+        updateCountdown();
         
-        // Création des flocons de neige
         const snowflakesCount = 50;
         const snowflakesContainer = document.createElement('div');
         snowflakesContainer.id = 'snowflakes-container';
@@ -111,7 +152,7 @@
             snowflake.className = 'snowflake';
             snowflake.style.left = `${Math.random() * 100}%`;
             snowflake.style.animationDelay = `${Math.random() * 10}s`;
-            snowflake.innerHTML = '❅';
+            snowflake.innerHTML = '❄';
             snowflakesContainer.appendChild(snowflake);
         }
         document.body.appendChild(snowflakesContainer);
