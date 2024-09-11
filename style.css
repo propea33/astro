@@ -4,23 +4,29 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
     color: #37474F;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
-.container {
-    text-align: center;
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 0;
+    box-sizing: border-box;
+}
+
+.content-container {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    margin: 2rem 0;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 h1 {
@@ -41,6 +47,15 @@ h1 {
     font-size: 1.4rem;
     color: #455A64;
     margin-bottom: 2rem;
+}
+
+.ad-container {
+    margin: 2rem 0;
+}
+
+.ad-container img {
+    max-width: 100%;
+    height: auto;
 }
 
 #recipe-container {
@@ -100,4 +115,22 @@ h1 {
 @keyframes snowflakes-shake {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(80px); }
+}
+
+@media (max-width: 600px) {
+    .content-container {
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #countdown {
+        font-size: 1.8rem;
+    }
+
+    #detailed-countdown {
+        font-size: 1.2rem;
+    }
 }
