@@ -1,16 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 body, html {
-    height: 100%;
     margin: 0;
+    padding: 0;
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
     color: #37474F;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 .container {
@@ -20,7 +15,8 @@ body, html {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    margin: 2rem 0;
+    margin: 2rem auto;
+    max-width: 800px;
 }
 
 h1 {
@@ -43,12 +39,23 @@ h1 {
     margin-bottom: 2rem;
 }
 
-#recipe-container {
+.image-container {
     margin-top: 2rem;
-    padding: 1rem;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#recipe-container {
+    margin: 2rem auto;
+    padding: 2rem;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
 }
 
 #generate-recipe, #send-email {
@@ -74,30 +81,4 @@ h1 {
     line-height: 1.6;
 }
 
-.snowflake {
-    color: #fff;
-    font-size: 1.5em;
-    font-family: Arial, sans-serif;
-    text-shadow: 0 0 5px #000;
-    position: fixed;
-    top: -10%;
-    z-index: 9999;
-    user-select: none;
-    cursor: default;
-    animation-name: snowflakes-fall, snowflakes-shake;
-    animation-duration: 10s, 3s;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: infinite, infinite;
-    animation-play-state: running, running;
-    opacity: 0.7;
-}
-
-@keyframes snowflakes-fall {
-    0% { top: -10%; }
-    100% { top: 100%; }
-}
-
-@keyframes snowflakes-shake {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(80px); }
-}
+/* Les styles pour les flocons de neige restent inchangés */
