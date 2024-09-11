@@ -20,23 +20,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="countdown-container">
-            <h1>Combien de jours avant Noël ?</h1>
-            <div id="countdown"></div>
-            <div id="detailed-countdown"></div>
-            <div class="image-container">
-                <img src="https://i.imgur.com/Ss7BsbD.jpeg" alt="Cadeau de Noël">
-            </div>
+    <div class="container">
+        <h1>Combien de jours avant Noël ?</h1>
+        <div id="countdown"></div>
+        <div id="detailed-countdown"></div>
+        <div align="center">
+            <a target="_blank" href="https://amzn.to/3Zfnkz6">
+                <img src="noelcadeau.jpg" alt="Décorations de Noël">
+            </a>
         </div>
         <div id="recipe-container">
-            <h2>Recette de Noël</h2>
             <button id="generate-recipe">Générer une recette de Noël</button>
             <div id="recipe-text"></div>
             <button id="send-email" style="display: none;">Envoyer la recette par courriel</button>
         </div>
     </div>
-     <script type="application/ld+json">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -50,8 +49,6 @@
       }
     }
     </script>
-
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -68,9 +68,6 @@ function generateRecipe() {
     recipeText.innerHTML = recipeHTML;
     generateButton.textContent = "Générer une autre recette de Noël";
     sendEmailButton.style.display = "inline-block";
-    
-    // Scroll en douceur jusqu'à la recette
-    document.getElementById('recipe-container').scrollIntoView({ behavior: 'smooth' });
 }
 
 generateButton.addEventListener('click', generateRecipe);
