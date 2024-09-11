@@ -11,108 +11,24 @@
     <meta property="og:description" content="Découvrez exactement combien de jours il reste avant Noël. Décompte précis mis à jour chaque seconde ! Avec des recettes de Noël." />
     <meta property="og:url" content="https://www.avantnoel.com" />
     <meta property="og:type" content="website" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-            color: #37474F;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 2rem 0;
-        }
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            color: #1565C0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        #countdown {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #00796B;
-            font-weight: bold;
-        }
-        #detailed-countdown {
-            font-size: 1.4rem;
-            color: #455A64;
-            margin-bottom: 2rem;
-        }
-        .seo-text {
-            font-size: 1rem;
-            margin-top: 2rem;
-            color: #546E7A;
-            max-width: 600px;
-            text-align: justify;
-            line-height: 1.6;
-        }
-        .snowflake {
-            color: #fff;
-            font-size: 1.5em;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px #000;
-            position: fixed;
-            top: -10%;
-            z-index: 9999;
-            user-select: none;
-            cursor: default;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            animation-play-state: running, running;
-            opacity: 0.7;
-        }
-        @keyframes snowflakes-fall {
-            0% { top: -10%; }
-            100% { top: 100%; }
-        }
-        @keyframes snowflakes-shake {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(80px); }
-        }
-        #recipe-container {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        #generate-recipe, #send-email {
-            background-color: #1565C0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 1rem;
-        }
-        #generate-recipe:hover, #send-email:hover {
-            background-color: #0D47A1;
-        }
-        #recipe-text {
-            margin-top: 1rem;
-            text-align: left;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Combien de jours avant Noël ?</h1>
+        <div id="countdown"></div>
+        <div id="detailed-countdown"></div>
+        <div align="center">
+            <a target="_blank" href="https://amzn.to/3Zfnkz6">
+                <img src="https://i.imgur.com/Ss7BsbD.jpeg" alt="Décorations de Noël">
+            </a>
+        </div>
+        <div id="recipe-container">
+            <button id="generate-recipe">Générer une recette de Noël</button>
+            <div id="recipe-text"></div>
+            <button id="send-email" style="display: none;">Envoyer la recette par courriel</button>
+        </div>
+    </div>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -127,118 +43,6 @@
       }
     }
     </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Combien de jours avant Noël ?</h1>
-        <div id="countdown"></div>
-        <div id="detailed-countdown"></div>
-        <div align="center"> <a target="_blank" href="https://amzn.to/3Zfnkz6"><img src="https://i.imgur.com/Ss7BsbD.jpeg"></a> </div>
-        <div id="recipe-container">
-            <button id="generate-recipe">Générer une recette de Noël</button>
-            <div id="recipe-text"></div>
-            <button id="send-email" style="display: none;">Envoyer la recette par courriel</button>
-        </div>
-    </div>
-
-    <script>
-        function updateCountdown() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            const christmasDate = new Date(currentYear, 11, 25);
-            
-            if (now > christmasDate) {
-                christmasDate.setFullYear(currentYear + 1);
-            }
-            
-            const diff = christmasDate - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const months = Math.floor(days / 30);
-            const weeks = Math.floor((days % 30) / 7);
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').innerHTML = `Il reste ${days} jours avant Noël`;
-            document.getElementById('detailed-countdown').innerHTML = `${months} mois, ${weeks} semaines, ${hours} heures, ${minutes} minutes, ${seconds} secondes`;
-
-            document.title = `Combien de jours avant Noël ? ${days} jours restants !`;
-        }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
-        const snowflakesCount = 50;
-        const snowflakesContainer = document.createElement('div');
-        snowflakesContainer.id = 'snowflakes-container';
-        for (let i = 0; i < snowflakesCount; i++) {
-            let snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
-            snowflake.style.left = `${Math.random() * 100}%`;
-            snowflake.style.animationDelay = `${Math.random() * 10}s`;
-            snowflake.innerHTML = '❄';
-            snowflakesContainer.appendChild(snowflake);
-        }
-        document.body.appendChild(snowflakesContainer);
-
-        // Recettes de Noël
-        const recipes = [
-            {
-                name: "Sablés de Noël",
-                ingredients: ["250g de farine", "125g de beurre", "125g de sucre", "1 œuf", "1 pincée de sel"],
-                instructions: "Mélangez tous les ingrédients. Formez une boule et laissez reposer 1h au frais. Étalez la pâte et découpez des formes. Cuisez 10-12 min à 180°C."
-            },
-            {
-                name: "Chocolat chaud de Noël",
-                ingredients: ["500ml de lait", "50g de chocolat noir", "1 bâton de cannelle", "1 pincée de muscade"],
-                instructions: "Faites chauffer le lait avec la cannelle. Ajoutez le chocolat et la muscade. Remuez jusqu'à ce que le chocolat soit fondu. Servez chaud."
-            },
-            {
-                name: "Truffes au chocolat",
-                ingredients: ["200g de chocolat noir", "20cl de crème fraîche", "30g de beurre", "Cacao en poudre"],
-                instructions: "Faites fondre le chocolat et le beurre. Ajoutez la crème. Réfrigérez 2h. Formez des boules et roulez-les dans le cacao."
-            },
-            {
-                name: "Bûche de Noël",
-                ingredients: ["4 œufs", "100g de sucre", "100g de farine", "200g de crème au beurre", "Cacao en poudre"],
-                instructions: "Préparez un biscuit roulé. Une fois refroidi, étalez la crème au beurre et roulez. Décorez avec du cacao en poudre pour imiter l'écorce."
-            },
-            {
-                name: "Vin chaud de Noël",
-                ingredients: ["1L de vin rouge", "100g de sucre", "1 orange", "1 citron", "1 bâton de cannelle", "2 étoiles de badiane"],
-                instructions: "Faites chauffer tous les ingrédients sans bouillir. Laissez infuser 30 minutes. Filtrez et servez chaud."
-            }
-            // ... Ajoutez les 25 recettes restantes ici
-        ];
-
-        const generateButton = document.getElementById('generate-recipe');
-        const recipeText = document.getElementById('recipe-text');
-        const sendEmailButton = document.getElementById('send-email');
-        let currentRecipe = null;
-
-        function generateRecipe() {
-            currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-            let recipeHTML = `<h3>${currentRecipe.name}</h3>`;
-            recipeHTML += "<h4>Ingrédients :</h4><ul>";
-            currentRecipe.ingredients.forEach(ingredient => {
-                recipeHTML += `<li>${ingredient}</li>`;
-            });
-            recipeHTML += "</ul><h4>Instructions :</h4><p>" + currentRecipe.instructions + "</p>";
-            recipeText.innerHTML = recipeHTML;
-            generateButton.textContent = "Générer une autre recette de Noël";
-            sendEmailButton.style.display = "inline-block";
-        }
-
-        generateButton.addEventListener('click', generateRecipe);
-
-        sendEmailButton.addEventListener('click', function() {
-            if (currentRecipe) {
-                const subject = encodeURIComponent("Une délicieuse recette de Noël pour toi !");
-                const body = encodeURIComponent(`J'ai trouvé une magnifique recette à te partager pour le temps des fêtes :\n\n${currentRecipe.name}\n\nIngrédients :\n${currentRecipe.ingredients.join('\n')}\n\nInstructions :\n${currentRecipe.instructions}\n\nJoyeuses fêtes !`);
-                window.location.href = `mailto:?subject=${subject}&body=${body}`;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
