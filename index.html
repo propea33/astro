@@ -33,6 +33,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            margin: 2rem 0;
         }
         h1 {
             font-size: 2.8rem;
@@ -91,7 +92,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        #generate-recipe {
+        #generate-recipe, #send-email {
             background-color: #1565C0;
             color: white;
             border: none;
@@ -100,8 +101,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 1rem;
         }
-        #generate-recipe:hover {
+        #generate-recipe:hover, #send-email:hover {
             background-color: #0D47A1;
         }
         #recipe-text {
@@ -135,6 +137,7 @@
         <div id="recipe-container">
             <button id="generate-recipe">Générer une recette de Noël</button>
             <div id="recipe-text"></div>
+            <button id="send-email" style="display: none;">Envoyer la recette par courriel</button>
         </div>
     </div>
 
@@ -196,8 +199,6 @@
                 ingredients: ["200g de chocolat noir", "20cl de crème fraîche", "30g de beurre", "Cacao en poudre"],
                 instructions: "Faites fondre le chocolat et le beurre. Ajoutez la crème. Réfrigérez 2h. Formez des boules et roulez-les dans le cacao."
             },
-            // Ajoutez ici 27 autres recettes de Noël pour atteindre un total de 30 recettes
-            // Par exemple :
             {
                 name: "Bûche de Noël",
                 ingredients: ["4 œufs", "100g de sucre", "100g de farine", "200g de crème au beurre", "Cacao en poudre"],
@@ -213,20 +214,31 @@
 
         const generateButton = document.getElementById('generate-recipe');
         const recipeText = document.getElementById('recipe-text');
+        const sendEmailButton = document.getElementById('send-email');
+        let currentRecipe = null;
 
         function generateRecipe() {
-            const recipe = recipes[Math.floor(Math.random() * recipes.length)];
-            let recipeHTML = `<h3>${recipe.name}</h3>`;
+            currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+            let recipeHTML = `<h3>${currentRecipe.name}</h3>`;
             recipeHTML += "<h4>Ingrédients :</h4><ul>";
-            recipe.ingredients.forEach(ingredient => {
+            currentRecipe.ingredients.forEach(ingredient => {
                 recipeHTML += `<li>${ingredient}</li>`;
             });
-            recipeHTML += "</ul><h4>Instructions :</h4><p>" + recipe.instructions + "</p>";
+            recipeHTML += "</ul><h4>Instructions :</h4><p>" + currentRecipe.instructions + "</p>";
             recipeText.innerHTML = recipeHTML;
             generateButton.textContent = "Générer une autre recette de Noël";
+            sendEmailButton.style.display = "inline-block";
         }
 
         generateButton.addEventListener('click', generateRecipe);
+
+        sendEmailButton.addEventListener('click', function() {
+            if (currentRecipe) {
+                const subject = encodeURIComponent("Une délicieuse recette de Noël pour toi !");
+                const body = encodeURIComponent(`J'ai trouvé une magnifique recette à te partager pour le temps des fêtes :\n\n${currentRecipe.name}\n\nIngrédients :\n${currentRecipe.ingredients.join('\n')}\n\nInstructions :\n${currentRecipe.instructions}\n\nJoyeuses fêtes !`);
+                window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            }
+        });
     </script>
 </body>
 </html>
