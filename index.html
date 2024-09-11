@@ -3,30 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combien de jours avant Noël ?</title>
+    <title>Combien de temps avant Noël ? - Décompte en temps réel</title>
+    <meta name="description" content="Découvrez en temps réel combien de jours, mois, semaines, heures, minutes et secondes il reste avant Noël !">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://via.placeholder.com/1920x1080.png?text=Bonhomme+de+neige') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        #countdown {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px #000;
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+        @keyframes snowflakes-shake {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(80px); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Combien de jours avant Noël ?</h1>
-    <div id="countdown"></div>
+    <div class="container">
+        <h1>Combien de temps avant Noël ?</h1>
+        <div id="countdown"></div>
+        <div id="detailed-countdown"></div>
+    </div>
 
     <script>
-        function countdown() {
-            const today = new Date();
-            const christmas = new Date(today.getFullYear(), 11, 25); // Mois est indexé à partir de 0 (janvier = 0)
-            let differenceInMilliseconds = christmas - today;
-
-            // Si Noël est déjà passé cette année, on calcule pour l'année suivante
-            if (differenceInMilliseconds < 0) {
-                christmas.setFullYear(christmas.getFullYear() + 1);
-                differenceInMilliseconds = christmas - today;
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const christmasDate = new Date(currentYear, 11, 25); // Mois 11 = décembre (0-indexed)
+            
+            if (now > christmasDate) {
+                christmasDate.setFullYear(currentYear + 1);
             }
-
-            const daysLeft = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown").textContent = daysLeft + " jour" + (daysLeft > 1 ? "s" : "");
+            
+            const diff = christmasDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30);
+            const weeks = Math.floor((days % 30) / 7);
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = `Il reste ${days} jours avant Noël`;
+            document.getElementById('detailed-countdown').innerHTML = `${months} mois, ${weeks} semaines, ${hours} heures, ${minutes} minutes, ${seconds} secondes`;
         }
-
-        countdown();
-        setInterval(countdown, 1000);
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Création des flocons de neige
+        const snowflakesCount = 50;
+        const snowflakesContainer = document.createElement('div');
+        snowflakesContainer.id = 'snowflakes-container';
+        for (let i = 0; i < snowflakesCount; i++) {
+            let snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = `${Math.random() * 100}%`;
+            snowflake.style.animationDelay = `${Math.random() * 10}s`;
+            snowflake.innerHTML = '❅';
+            snowflakesContainer.appendChild(snowflake);
+        }
+        document.body.appendChild(snowflakesContainer);
     </script>
 </body>
 </html>
