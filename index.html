@@ -22,33 +22,36 @@
 <body>
     <div class="container">
         <h1>Combien de jours avant Noël ?</h1>
+        
         <div id="countdown"></div>
+        
         <div id="detailed-countdown"></div>
+        
         <div align="center">
-            <a target="_blank" href="https://amzn.to/3Zfnkz6">
-                <img src="noelcadeau.jpg" alt="Décorations de Noël">
+            <a href="https://amzn.to/3Zfnkz6" target="_blank">
+                <img src="noelcadeau.jpg" alt="Décorations de Noël" style="max-width: 100%; height: auto;">
             </a>
         </div>
+        
         <div id="recipe-container">
             <button id="generate-recipe">Générer une recette de Noël</button>
             <div id="recipe-text"></div>
             <button id="send-email" style="display: none;">Envoyer la recette par courriel</button>
         </div>
+        
+        <div id="facebook-share" style="margin-top: 20px;">
+            <button onclick="shareOnFacebook()">Partagez ce décompte de Noël à votre entourage</button>
+        </div>
     </div>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Combien de jours avant Noël ?",
-      "url": "https://www.avantnoel.com",
-      "description": "Décompte précis en temps réel des jours, heures, minutes et secondes avant Noël. Avec des recettes de Noël.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.avantnoel.com",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
+
     <script src="script.js"></script>
+    <script>
+        function shareOnFacebook() {
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.title);
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url + '&t=' + title, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            return false;
+        }
+    </script>
 </body>
 </html>
