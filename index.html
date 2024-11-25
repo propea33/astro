@@ -1,46 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-88PFTM8536"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88PFTM8536"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-88PFTM8536');
+    </script>
 
-  gtag('config', 'G-88PFTM8536');
-</script>
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.avantnoel.com/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://www.avantnoel.com/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://www.avantnoel.com/favicon-16x16.png">
-<link rel="manifest" href="https://www.avantnoel.com/site.webmanifest">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
+    <!-- Métadonnées de base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combien de jours avant Noël ? Décompte précis en temps réel</title>
-    <meta name="description" content="Découvrez exactement combien de jours, mois, semaines, heures, minutes et secondes il reste avant Noël. Décompte précis et mise à jour en direct ! Recettes de Noël incluses.">
-    <meta name="keywords" content="combien de temps avant noel, combien de jours avant noel, décompte noël, temps restant avant noël, jour avant noel, il reste combien de jours avant Noël">
-    <link rel="canonical" href="https://www.avantnoel.com" />
-    <meta property="og:title" content="Combien de jours avant Noël ? Décompte précis en direct" />
-    <meta property="og:description" content="Découvrez exactement combien de jours il reste avant Noël. Décompte précis mis à jour chaque seconde ! Avec des recettes de Noël." />
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Avant Noël">
+    <meta name="language" content="French">
+
+    <!-- Métadonnées enrichies pour le SEO -->
+    <title>Combien de Jours Avant Noël 2024 ? ⌛ Décompte en Temps Réel</title>
+    <meta name="description" content="Décompte officiel avant Noël 2024 🎄 Découvrez en temps réel combien de jours, heures, minutes et secondes avant Noël. Compteur précis mis à jour en direct + calendrier de l'avent numérique gratuit !">
+    <meta name="keywords" content="combien de jours avant noel, compte à rebours noel, décompte noel 2024, temps avant noel, countdown noel, calendrier avant noel, jours restants avant noel, calculateur noel">
+
+    <!-- Open Graph pour un meilleur partage social -->
+    <meta property="og:title" content="Combien de Jours Avant Noël 2024 ? Compteur en Direct" />
+    <meta property="og:description" content="🎄 Découvrez en temps réel combien de jours, heures et minutes avant Noël 2024. Compteur précis et calendrier de l'avent numérique gratuit !" />
     <meta property="og:url" content="https://www.avantnoel.com" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.avantnoel.com/noelcadeau.jpg" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Avant Noël" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Combien de Jours Avant Noël 2024 ? ⌛">
+    <meta name="twitter:description" content="Découvrez en temps réel le décompte avant Noël 2024 🎄">
+    <meta name="twitter:image" content="https://www.avantnoel.com/noelcadeau.jpg">
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Avant Noël",
+      "url": "https://www.avantnoel.com",
+      "description": "Compteur en temps réel des jours restants avant Noël 2024",
+      "inLanguage": "fr-FR",
+      "dateModified": "2024-11-25"
+    }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.avantnoel.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.avantnoel.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.avantnoel.com/favicon-16x16.png">
+    <link rel="manifest" href="https://www.avantnoel.com/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="https://www.avantnoel.com" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Combien de jours avant Noël ?</h1>
-        <div id="countdown"></div>
-        <div id="detailed-countdown"></div>
-        <div align="center">
-            <a target="_blank" href="https://amzn.to/3Zfnkz6">
-                <img src="noelcadeau.jpg" alt="Décorations de Noël">
-            </a>
+    <header>
+        <h1>Combien de Jours Avant Noël 2024 ? 🎄</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div id="countdown" aria-live="polite"></div>
+            <div id="detailed-countdown" aria-live="polite"></div>
+            <div class="image-container" align="center">
+                <a target="_blank" href="https://amzn.to/3Zfnkz6">
+                    <img src="noelcadeau.jpg" alt="Décorations et compte à rebours pour Noël 2024" width="800" height="600" loading="lazy">
+                </a>
+            </div>
         </div>
-    </div>
-  
-    <script src="script.js"></script>
+    </main>
+    <footer>
+        <p>Mise à jour en temps réel du décompte avant Noël 2024</p>
+    </footer>
+    <script src="script.js" defer></script>
 </body>
 </html>
